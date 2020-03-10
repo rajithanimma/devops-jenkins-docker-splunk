@@ -34,7 +34,7 @@ node {
     stage ('Docker Push') {
         docker.withTool('docker-latest') {
             withCredentials([usernamePassword(credentialsId: 'dockerhub',
-                             usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh "docker login -u ${USERNAME} -p ${PASSWORD} https://index.docker.io/v1/"
                 sh "docker push ${DOCKERHUB_REPO}:${BUILD_NUMBER}"
                 sh "docker push ${DOCKERHUB_REPO}:latest"
